@@ -1,0 +1,20 @@
+
+.my-container {
+  @apply mx-auto p-3 md:p-5 sm:max-w-xl md:max-w-full lg:max-w-screen-xl;
+}
+
+.btn {
+  @apply inline-flex items-center  lg:px-6 md:px-4 px-3 lg:py-3 py-2  mb-3 font-medium text-white transition rounded shadow-md md:mb-0 bg-gradient-to-r from-blue-500 to-purple-400 hover:from-purple-400 hover:to-blue-500 duration-700;
+}
+
+.badge {
+  @apply inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-yellow-400;
+}
+
+.active {
+  @apply font-bold tracking-wide text-blue-700 transition-colors duration-200 hover:text-blue-400;
+}
+
+.default {
+  @apply font-bold tracking-wide text-gray-700 transition-colors duration-200 hover:text-blue-400;
+}
