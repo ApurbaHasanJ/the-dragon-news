@@ -36,9 +36,15 @@ const NavigationBar = () => {
             </Link>
           </Nav>
           <Nav className="d-flex align-items-center gap-3">
-            {user && (
+            {user ? (
               <Link>
                 <FaUser className="fs-3 text-secondary" />
+              </Link>
+            ) : (
+              <Link to="/register">
+                <Button className="p-2 px-4" variant="dark">
+                  SignUp
+                </Button>
               </Link>
             )}
             {user ? (
