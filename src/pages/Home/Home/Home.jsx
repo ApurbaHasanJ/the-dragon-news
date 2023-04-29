@@ -1,9 +1,10 @@
 import React from 'react';
+import NewsCard from '../NewsCard/NewsCard';
 
 const Home = () => {
     return (
         <div>
-            <h2>This is home</h2>
+            {/* <NewsCard/> */}
         </div>
     );
 };
