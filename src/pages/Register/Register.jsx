@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import { Button, Container, Form } from "react-bootstrap";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 const Register = () => {
@@ -9,7 +9,6 @@ const Register = () => {
   const [acceptTerms, setAcceptTerms] = useState(false);
 
   const navigate = useNavigate();
-  const location = useLocation();
   const handleRegistration = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -17,27 +16,18 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     const photo = form.photo.value;
-    const from = location.state?.from?.pathname || "/";
-    // console.log(name, email, password, photo);
     // create user
     createUser(email, password)
       .then((result) => {
+        userProfile(name, photo)
         const createdUser = result.user;
         console.log(createdUser);
-        navigate(from, { replace: true });
+        navigate('/');
       })
       .catch((err) => {
         console.log(err);
       });
 
-    // user profile update
-    // userProfile(name, photo)
-    //   .then(() => {
-    //     console.log("Profile updated successfully!");
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error updating profile:", error);
-    //   });
   };
 
   const handleAcceptTerms = (e) => {
