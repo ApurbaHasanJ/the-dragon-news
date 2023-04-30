@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import { Button, Container, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 const Register = () => {
-  const { createUser, userProfile } = useContext(AuthContext);
-  const [acceptTerms , setAcceptTerms] = useState(false)
+  const { createUser, userProfile, user } = useContext(AuthContext);
+  const [acceptTerms, setAcceptTerms] = useState(false);
 
+  const navigate = useNavigate();
+  const location = useLocation();
   const handleRegistration = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -15,12 +17,14 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     const photo = form.photo.value;
+    const from = location.state?.from?.pathname || "/";
     // console.log(name, email, password, photo);
     // create user
     createUser(email, password)
       .then((result) => {
         const createdUser = result.user;
         console.log(createdUser);
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         console.log(err);
@@ -36,10 +40,10 @@ const Register = () => {
     //   });
   };
 
-  const handleAcceptTerms =(e)=>{
-    setAcceptTerms(e.target.checked)
+  const handleAcceptTerms = (e) => {
+    setAcceptTerms(e.target.checked);
     console.log(e.target.checked);
-  }
+  };
 
   return (
     <Container className="bg-white w-50 mx-auto p-5">
@@ -96,7 +100,7 @@ const Register = () => {
           controlId="formBasicCheckbox"
         >
           <Form.Check
-          onClick={handleAcceptTerms}
+            onClick={handleAcceptTerms}
             name="accept"
             type="checkbox"
             label={
@@ -112,7 +116,8 @@ const Register = () => {
             }
           />
         </Form.Group>
-        <Button disabled={!acceptTerms}
+        <Button
+          disabled={!acceptTerms}
           className="w-100 p-2 fw-semibold fs-5 mt-3"
           variant="dark"
           type="submit"

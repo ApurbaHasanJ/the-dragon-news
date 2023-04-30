@@ -2,10 +2,11 @@ import React from "react";
 import { Card, Image } from "react-bootstrap";
 import { BsShare, BsBookmark, BsEyeFill } from "react-icons/bs";
 import { HiOutlineStar, HiStar } from "react-icons/hi";
-
+import { Rating } from "@smastrom/react-rating";
+import "@smastrom/react-rating/style.css";
 import { Link } from "react-router-dom";
 import moment from "moment/moment";
-import Rating from "react-rating";
+// import Rating from "react-rating";
 import { FaRegStar, FaStar } from "react-icons/fa";
 
 const NewsCard = ({ news }) => {
@@ -53,12 +54,10 @@ const NewsCard = ({ news }) => {
       <Card.Footer className="text-muted fs-5 d-flex mx-3 p-3 align-items-center bg-white">
         <div className="d-flex flex-grow-1 align-items-center gap-2">
           <Rating
-          className="text-light d-flex gap-2"
-            readonly
-            placeholderRating={rating?.number}
-            emptySymbol={<FaRegStar className="fs-5"/>}
-            placeholderSymbol={<FaStar className="text-warning"/>}
-            fullSymbol={<FaStar className="fs-5"/>}
+            className="text-warning"
+            style={{ maxWidth: 150 }}
+            value={rating}
+            readOnly
           />
           {rating?.number}
         </div>
